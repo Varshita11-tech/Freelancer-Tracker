@@ -55,6 +55,11 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ success: true, message: 'Freelancer Tracker API is running' });
 });
 
+// Root route
+app.get('/', (req, res) => {
+  res.status(200).json({ success: true, message: 'Welcome to the Freelancer Tracker API' });
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
