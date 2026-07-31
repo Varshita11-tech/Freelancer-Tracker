@@ -11,9 +11,9 @@ services:
       - key: PORT
         value: 5000
       - key: MONGODB_URI
-        sync: false
+        value: mongodb+srv://varshitasharma11_db_user:NNP2zdGAAExuojYV@noteshubcluster.nym9l32.mongodb.net/freelancer_tracker?retryWrites=true&w=majority&appName=NotesHubCluster
       - key: JWT_SECRET
-        sync: false
+        value: 9b2d8f63a4e7c1d5f9b4c2e8a6d3f1b7e4c5a9d2b8f3e7c1a5d9b6f4e2c8a1d7
       - key: JWT_EXPIRES_IN
         value: 30d
       - key: CLIENT_URL
