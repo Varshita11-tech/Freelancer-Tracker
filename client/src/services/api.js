@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+const configuredApiUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '');
+// A deployed backend may be configured as either its origin or its /api URL.
+// Normalise both forms so every request reaches the Express API routes.
+const baseURL = configuredApiUrl
+  ? (configuredApiUrl.endsWith('/api') ? configuredApiUrl : configuredApiUrl + '/api')
+  : '/api';
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || '/api',
+  baseURL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -11,7 +18,7 @@ const api = axios.create({
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('ft-token');
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = 'Bearer ' + token;
   }
   return config;
 }, (error) => {
