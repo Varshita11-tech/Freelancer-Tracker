@@ -1,12 +1,7 @@
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import {
-  FiGrid, FiFolder, FiPlusCircle, FiDollarSign, FiCreditCard,
-  FiBarChart2, FiSettings, FiUser, FiLogOut, FiX, FiBriefcase,
-} from 'react-icons/fi'
-import { useAuth } from '../../context/AuthContext'
-import { useToast } from '../../context/ToastContext'
-import { classNames, initials } from '../../utils/formatters'
+import { FiGrid, FiFolder, FiCreditCard, FiBriefcase } from 'react-icons/fi'
+import { classNames } from '../../utils/formatters'
 
 const NAV_ITEMS = [
   { to: '/dashboard', label: 'Dashboard', icon: FiGrid },
@@ -28,14 +23,13 @@ export default function Sidebar({ open, onClose }) {
           open ? 'translate-x-0 lg:w-64 lg:min-w-[16rem]' : '-translate-x-full lg:w-0 lg:min-w-0 lg:-translate-x-full lg:border-r-0 lg:overflow-hidden'
         )}
       >
-        <div className="flex items-center justify-between px-6 py-6">
+        <div className="flex items-center px-6 py-6">
           <div className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary-600 to-secondary-600 text-white shadow-card">
               <FiBriefcase size={17} />
             </div>
             <span className="font-display text-lg font-bold text-slate-800 dark:text-white">Freelancer<span className="text-primary-600">Tracker</span></span>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-600 lg:hidden"><FiX size={20} /></button>
         </div>
 
         <nav className="flex-1 space-y-1 overflow-y-auto px-4">
