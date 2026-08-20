@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
@@ -10,6 +10,17 @@ export default function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 1024)
   const location = useLocation()
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setSidebarOpen(true)
+      } else {
+        setSidebarOpen(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   return (
     <div className="flex h-screen overflow-hidden bg-surface-light dark:bg-surface-dark">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />

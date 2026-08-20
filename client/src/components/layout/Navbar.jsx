@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FiArrowRight, FiSun, FiMoon, FiBell, FiSearch, FiChevronDown } from 'react-icons/fi'
+import { FiMenu, FiSun, FiMoon, FiBell, FiSearch, FiChevronDown } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
 import { useAuth } from '../../context/AuthContext'
@@ -23,7 +23,7 @@ export default function Navbar({ onMenuClick }) {
     <header className="sticky top-0 z-20 flex items-center justify-between gap-4 border-b border-slate-200/70 bg-white/80 px-4 py-3.5 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/80 sm:px-6">
       <div className="flex items-center gap-3">
         <button onClick={onMenuClick} className="btn-ghost h-9 w-9 !p-0">
-          <FiArrowRight size={19} />
+          <FiMenu size={19} />
         </button>
         <form onSubmit={(e) => {
           e.preventDefault();
