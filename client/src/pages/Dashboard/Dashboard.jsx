@@ -80,7 +80,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <StatCard label="Total Projects" value={stats.totalProjects} icon={FiFolder} tone="primary" />
         <StatCard label="Completed" value={stats.completed} icon={FiCheckCircle} tone="accent" />
         <StatCard label="Active" value={stats.active} icon={FiLoader} tone="secondary" />
