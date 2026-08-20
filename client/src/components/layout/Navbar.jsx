@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { FiMenu, FiSun, FiMoon, FiBell, FiSearch, FiChevronDown } from 'react-icons/fi'
+import { FiMenu, FiX, FiSun, FiMoon, FiSearch, FiChevronDown } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
 import { useAuth } from '../../context/AuthContext'
 import { initials } from '../../utils/formatters'
 import { useToast } from '../../context/ToastContext'
 
-export default function Navbar({ onMenuClick }) {
+export default function Navbar({ sidebarOpen, onMenuClick }) {
   const { theme, toggleTheme } = useTheme()
   const { user, logout } = useAuth()
   const { showToast } = useToast()
@@ -22,8 +22,14 @@ export default function Navbar({ onMenuClick }) {
   return (
     <header className="sticky top-0 z-20 flex items-center justify-between gap-4 border-b border-slate-200/70 bg-white/80 px-4 py-3.5 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/80 sm:px-6">
       <div className="flex items-center gap-3">
-        <button onClick={onMenuClick} className="btn-ghost h-9 w-9 !p-0">
-          <FiMenu size={19} />
+        <button
+          type="button"
+          onClick={onMenuClick}
+          aria-label={sidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+          aria-expanded={sidebarOpen}
+          className="btn-ghost h-9 w-9 !p-0"
+        >
+          {sidebarOpen ? <FiX size={20} /> : <FiMenu size={20} />}
         </button>
         <form onSubmit={(e) => {
           e.preventDefault();
@@ -47,7 +53,7 @@ export default function Navbar({ onMenuClick }) {
               {initials(user?.name || 'FT')}
             </div>
 
-            <FiChevronDown size={14} className="text-slate-400" />
+            <FiChevronDown size={14} className="hidden text-slate-400 sm:block" />
           </button>
           {menuOpen && (
             <div className="absolute right-0 top-full mt-2 w-44 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card dark:border-slate-700 dark:bg-slate-800" onMouseLeave={() => setMenuOpen(false)}>
