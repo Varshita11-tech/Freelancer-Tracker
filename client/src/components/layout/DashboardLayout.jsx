@@ -12,9 +12,9 @@ export default function DashboardLayout() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setSidebarOpen(true)
-      } else {
+      // Keep the sidebar closed when moving to a compact viewport. On larger
+      // screens the user can decide whether it should stay open or closed.
+      if (window.innerWidth < 1024) {
         setSidebarOpen(false)
       }
     }
@@ -25,8 +25,11 @@ export default function DashboardLayout() {
     <div className="flex h-screen overflow-hidden bg-surface-light dark:bg-surface-dark">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="flex h-full flex-1 flex-col overflow-y-auto lg:pl-0">
-        <Navbar onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
-        <main className="flex-1 px-4 py-6 sm:px-6 lg:px-8">
+        <Navbar
+          sidebarOpen={sidebarOpen}
+          onMenuClick={() => setSidebarOpen((isOpen) => !isOpen)}
+        />
+        <main className="flex-1 px-3 py-4 sm:px-6 sm:py-6 lg:px-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
